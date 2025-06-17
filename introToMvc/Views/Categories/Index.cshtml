@@ -1,0 +1,15 @@
+﻿<!DOCTYPE html>
+    <html>
+    <head>
+        <title></title>
+    </head>
+    <body>
+    @{
+        foreach(var cat in @Model)
+        {
+            <h1>@cat.Name</h1>
+            <a href="/Categories/Details/@cat.Id">category Products</a>
+        }
+        }
+    </body>
+    </html>
