@@ -11,7 +11,7 @@ namespace introToMvc.Models
         public string? Name { get; set; }
         [Required]
         [MinLength(5)]
-        [MaxLength(20)]
+        [MaxLength(30)]
         public string? Description { get; set; }
         [Required]
         [Range(0.01, 100000.00)]

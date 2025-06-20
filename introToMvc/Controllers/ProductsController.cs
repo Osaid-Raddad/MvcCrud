@@ -1,6 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Azure.Core;
 using introToMvc.Data;
 using introToMvc.Models;
+using Microsoft.AspNetCore.Mvc;
 namespace introToMvc.Controllers
 {
     public class ProductsController : Controller
@@ -21,7 +22,7 @@ namespace introToMvc.Controllers
 
         public ViewResult Create()
         {
-            return View("Create",new Product());
+            return View("Create", new Product());
         }
 
         public IActionResult Add(Product request)
@@ -34,7 +35,7 @@ namespace introToMvc.Controllers
             }
             else
             {
-                return View("Create",request);
+                return View("Create", request);
             }
 
         }
@@ -55,6 +56,29 @@ namespace introToMvc.Controllers
         public ViewResult NotFound()
         {
             return View("NotFound");
+        }
+        [HttpGet]
+        public ViewResult Edit(int id)
+        {
+            var product = context.Products.Find(id);
+            return View(product);
+        }
+        [HttpPost]
+        public IActionResult Edit(Product request)
+        {
+            var nameExist = context.Products.Any(p=> p.Name == request.Name && p.Id != request.Id);
+            if (!ModelState.IsValid)
+            {
+                return View("Edit", request);
+            }
+            else if (nameExist)
+            {
+                ModelState.AddModelError("Name", "Name Exist");
+                return View("Edit", request);
+            }
+            context.Products.Update(request);
+            context.SaveChanges();
+            return RedirectToAction("Index");
         }
     }
 }

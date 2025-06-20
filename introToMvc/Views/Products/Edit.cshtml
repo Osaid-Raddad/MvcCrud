@@ -1,0 +1,59 @@
+﻿@model Product
+
+<!DOCTYPE html>
+    <html>
+    <head>
+        <title></title>
+    </head>
+<body class="bg-light">
+
+    <div class="container mt-5">
+        <div class="card shadow-sm">
+            <div class="card-header bg-primary text-white">
+                <h5 class="mb-0">Create New Product</h5>
+            </div>
+            <div class="card-body">
+                <form method="post" action="/Products/Edit">
+                   
+                        
+                    <input type="hidden" class="form-control" id="productId" name="Id" value="@Model.Id">
+                        
+
+                    <div class="mb-3">
+                        <label for="productName" class="form-label">Product Name</label>
+                        <input type="text" class="form-control" id="productName" name="Name" value="@Model.Name" required>
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="productDescription" class="form-label">Description</label>
+                        <textarea class="form-control" id="productDescription" name="Description" rows="3">@Model.Description</textarea>
+                        <span asp-validation-for="Description" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="productPrice" class="form-label">Price</label>
+                        <input type="number" step="0.01" class="form-control" id="productPrice" name="Price" value="@Model.Price" required>
+                        <span asp-validation-for="Price" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="categorySelect" class="form-label">Category</label>
+                        <select class="form-select" id="categorySelect" name="CategoryId" required>
+                            <option value="">Select a Category</option>
+                            <option value="1">Category 1</option>
+                            <option value="2">Category 2</option>
+                            <option value="3">Category 3</option>
+
+                        </select>
+                    </div>
+
+                    <button type="submit" class="btn btn-success">Update Product</button>
+                    <a href="/Products/Index" class="btn btn-secondary ms-2">Cancel</a>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</body>
+    </html>

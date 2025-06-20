@@ -12,6 +12,7 @@
                     <th scope="col">Name</th>
                     <th scope="col">Description</th>
                     <th scope="col"> Delete </th>
+                    <th scope="col"> Edit </th>
                     <th scope="col">Price</th>
                 </tr>
             </thead>
@@ -23,6 +24,7 @@
                     <td>@product.Name</td>
                     <td><a href="/Products/Details/@product.Id">Details</a> </td>
                     <td><button class="btn btn-danger"><a class="text-light" href="/Products/Delete/@product.Id">Delete</a></button></td>
+                    <td><button class="btn btn-primary"><a class="text-light" href="/Products/Edit/@product.Id">Edit</a></button></td>
                     <td>@product.Price</td>
                 </tr>
                 }
@@ -30,7 +32,7 @@
             </tbody>
         </table>
 
-        <a href="/Products/Create" class="btn btn-outline-primary">Create</a>
+        <a href="/Products/Create" class="btn btn-outline-primary">Create Product</a>
     }
     </body>
     </html>
